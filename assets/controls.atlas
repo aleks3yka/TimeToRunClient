@@ -1,0 +1,9 @@
+controls.png
+size:256,512
+repeat:none
+slider
+bounds:0,0,32,512
+sliderKnob
+bounds:32,336,64,48
+wheel
+bounds:32,384,128,128

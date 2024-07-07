@@ -1,0 +1,15 @@
+animation.png
+size:64,16
+repeat:none
+anime
+index:0
+bounds:0,0,16,16
+anime
+index:2
+bounds:0,0,16,16
+anime
+index:1
+bounds:16,0,16,16
+anime
+index:3
+bounds:32,0,16,16

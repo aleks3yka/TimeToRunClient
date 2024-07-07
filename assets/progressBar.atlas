@@ -1,0 +1,11 @@
+progressBar.png
+size:128,16
+repeat:none
+afterknob
+bounds:69,0,1,16
+beforeknob
+bounds:68,0,1,16
+knob
+bounds:64,0,4,16
+progressBar
+bounds:0,0,64,16
