@@ -1,1 +1,6 @@
 include 'desktop', 'android', 'core'
+dependencyResolutionManagement {
+    repositories {
+        google()
+    }
+}

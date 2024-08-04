@@ -10,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.5.0'
-        
+
 
     }
 }
@@ -70,7 +70,6 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
-        
     }
 }
 

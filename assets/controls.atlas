@@ -1,4 +1,16 @@
 controls.png
+size:2048,2048
+repeat:none
+buttonUp
+bounds:0,0,2048,2048
+
+controls2.png
+size:2048,2048
+repeat:none
+buttonDown
+bounds:0,0,2048,2048
+
+controls3.png
 size:256,512
 repeat:none
 slider

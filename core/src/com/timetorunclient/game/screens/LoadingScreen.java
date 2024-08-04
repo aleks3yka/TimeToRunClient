@@ -30,12 +30,12 @@ public class LoadingScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         game.assets.update();
-        if(timer < minDuration) {
-            timer += delta;
-        }
-        if(timer > minDuration){
-            timer = minDuration;
-        }
+//        if(timer < minDuration) {
+//            timer += delta;
+//        }
+//        if(timer > minDuration){
+//            timer = minDuration;
+//        }
 
 
         ScreenUtils.clear(1,1,1, 1);
@@ -44,12 +44,12 @@ public class LoadingScreen extends ScreenAdapter {
 
         viewport.apply();
 
-        progressBar.setValue(game.assets.getProgress() * (timer/minDuration));
+        progressBar.setValue(game.assets.getProgress()/* * (timer/minDuration)*/);
         progressBar.draw(game.batch);
 
         game.batch.end();
 
-        if(game.assets.getProgress() * (timer/minDuration) == 1){
+        if(game.assets.getProgress()/* * (timer/minDuration)*/ == 1){
             game.setScreen(nextScreen);
         }
     }
@@ -66,7 +66,6 @@ public class LoadingScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        atlas.dispose();
-        progressBar.dispose();
+        //progressBar.dispose();
     }
 }

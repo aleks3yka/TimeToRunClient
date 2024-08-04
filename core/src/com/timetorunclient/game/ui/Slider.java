@@ -38,7 +38,7 @@ public class Slider {
         return this.sliderProcessor;
     }
     public float getValue(){
-        return this.value;
+        return Math.max(Math.min(this.value, 1), 0);
     }
     public void draw(SpriteBatch batch){
         slider.draw(batch);
