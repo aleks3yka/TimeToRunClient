@@ -30,6 +30,7 @@ public class GraphView {
     Slider slider;
     Wheel wheel;
     float wheelPrevAngle;
+    public boolean synced = false;
     ArrayList<GraphElement> drawList;
     Comparator<GraphElement> comparator = (t1, t2) -> Math.round(Math.signum(
             Math.round(Math.signum(t1.priority - t2.priority))
@@ -75,9 +76,13 @@ public class GraphView {
         for(int i = 0; i < entities.length; i++){
             entityBuffer[i] = new EntityView(vertexWidth, entities[i], this);
         }
+        synced = true;
     }
 
     public void update(float deltaTime){
+        if(!synced){
+            return;
+        }
         drawList.clear();
 
         //check if user using wheel

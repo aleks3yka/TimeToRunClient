@@ -13,8 +13,13 @@ public class Entity {
     public ArrayList<String> spriteName;
     int spriteIndex;
 
+    public float getSpeed() {
+        return speed;
+    }
+
     //0 -- idling
     //1 -- moving
+    //2 -- removing
 
     public int getSpriteIndex() {
         return spriteIndex;
@@ -25,6 +30,19 @@ public class Entity {
         this.spriteName = new ArrayList<>(2);
         this.spriteName.add(spriteIdling);
         this.spriteName.add(spriteGoing);
+        this.speed = speed;
+        this.to = vert;
+        this.beginMoving = -1;
+        this.spriteIndex = 0;
+    }
+
+    public Entity(int vert, float speed, String spriteIdling, String spriteGoing,
+                  String spriteRemoving){
+        this.now = vert;
+        this.spriteName = new ArrayList<>(3);
+        this.spriteName.add(spriteIdling);
+        this.spriteName.add(spriteGoing);
+        this.spriteName.add(spriteRemoving);
         this.speed = speed;
         this.to = vert;
         this.beginMoving = -1;

@@ -2,7 +2,7 @@ package com.timetorunclient.game.space;
 
 import com.badlogic.gdx.utils.TimeUtils;
 import com.timetorunclient.game.GraphView;
-import com.timetorunclient.game.connection.Connection;
+import com.timetorunclient.game.utils.Connection;
 import com.timetorunclient.game.entities.Entity;
 import com.timetorunclient.game.ui.Button;
 
@@ -20,6 +20,7 @@ public class Graph {
     Button goButton;
     Button eraseButton;
     Entity playableEntity;
+    boolean graphSet = false;
     int lookingAt;
 
     private static final float UPDATES_PER_SECOND = 60;
@@ -54,6 +55,9 @@ public class Graph {
     //Personal life
 
     public void update(float dt){
+        if(!graphSet || !graphView.synced){
+            return;
+        }
         prevTime += dt;
         while (prevTime >= 1/UPDATES_PER_SECOND){
             prevTime -= 1/UPDATES_PER_SECOND;
@@ -144,6 +148,7 @@ public class Graph {
             graphView.sync(vertices, edges, entities);
             graphView.lookAt(playableEntity.getDestination(), goCooldown);
         }
+        this.graphSet = true;
     }
 
     //For graphics

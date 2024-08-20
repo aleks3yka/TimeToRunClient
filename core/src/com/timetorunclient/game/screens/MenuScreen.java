@@ -57,30 +57,42 @@ public class MenuScreen extends ScreenAdapter {
         root.left();
         root.add(chooseScreen).padLeft(Value.percentWidth(0.07f, root));
 
-        TextButton clientButton = new TextButton("Client", skin);
-        clientButton.addListener(new EventListener() {
+//        TextButton clientButton = new TextButton("Client", skin);
+//        clientButton.addListener(new EventListener() {
+//            @Override
+//            public boolean handle(Event event) {
+//                if(clientButton.isChecked()){
+//                    game.setScreenAndLoadNeededResources(TimeToRun.AppScreens.SERVERS);
+//                }
+//                return false;
+//            }
+//        });
+//        TextButton hostButton = new TextButton("Host", skin);
+//        hostButton.addListener(new EventListener() {
+//            @Override
+//            public boolean handle(Event event) {
+//                if(hostButton.isChecked()){
+//                    game.setScreenAndLoadNeededResources(TimeToRun.AppScreens.HOST);
+//                }
+//                return false;
+//            }
+//        });
+//
+//        chooseScreen.add(clientButton);
+//        chooseScreen.row();
+//        chooseScreen.add(hostButton);
+        TextButton playButton = new TextButton("Play!", skin);
+        playButton.addListener(new EventListener() {
             @Override
             public boolean handle(Event event) {
-                if(clientButton.isChecked()){
-                    game.setScreenAndLoadNeededResources(TimeToRun.AppScreens.SERVERS);
+                if(playButton.isChecked()){
+                    game.setScreenAndLoadNeededResources(TimeToRun.AppScreens.GAME);
+                    playButton.toggle();
                 }
                 return false;
             }
         });
-        TextButton hostButton = new TextButton("Host", skin);
-        hostButton.addListener(new EventListener() {
-            @Override
-            public boolean handle(Event event) {
-                if(hostButton.isChecked()){
-                    game.setScreenAndLoadNeededResources(TimeToRun.AppScreens.HOST);
-                }
-                return false;
-            }
-        });
-
-        chooseScreen.add(clientButton);
-        chooseScreen.row();
-        chooseScreen.add(hostButton);
+        chooseScreen.add(playButton);
     }
 
     @Override

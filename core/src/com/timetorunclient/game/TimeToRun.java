@@ -4,26 +4,26 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.timetorunclient.game.connection.Connection;
+import com.timetorunclient.game.utils.Connection;
 import com.timetorunclient.game.screens.GameScreen;
 import com.timetorunclient.game.screens.HostScreen;
 import com.timetorunclient.game.screens.LoadingScreen;
 import com.timetorunclient.game.screens.MenuScreen;
 import com.timetorunclient.game.screens.ServersScreen;
+import com.timetorunclient.game.utils.Server;
 import com.timetorunclient.game.utils.ServerDiscovery;
 import com.timetorunclient.game.utils.ServerRegistration;
 
 public class TimeToRun extends Game {
 	public SpriteBatch batch;
 	public AssetManager assets;
-	public Connection connection;
+	public Connection connection = new Connection();
 	MenuScreen menuScreen;
 	GameScreen gameScreen;
 	ServersScreen serversScreen;
@@ -32,10 +32,12 @@ public class TimeToRun extends Game {
 	public BitmapFont font;
 	public final ServerDiscovery discovery;
 	public final ServerRegistration registration;
+	public final Server server;
 
 	TimeToRun(ServerDiscovery discovery, ServerRegistration registration){
 		this.discovery = discovery;
         this.registration = registration;
+		this.server = new Server();
     }
 	
 	@Override
@@ -67,7 +69,7 @@ public class TimeToRun extends Game {
 		generator.dispose();
 
 		while (!assets.update());
-		//assets.load("animation.atlas", TextureAtlas.class);
+//		assets.load("animation.atlas", TextureAtlas.class);
 //		assets.load("controls.atlas", TextureAtlas.class);
 //		assets.load("game.atlas", TextureAtlas.class);
 		setScreenAndLoadNeededResources(AppScreens.MENU);

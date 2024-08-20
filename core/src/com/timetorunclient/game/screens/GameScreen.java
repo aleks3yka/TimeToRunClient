@@ -12,11 +12,13 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.timetorunclient.game.GraphView;
 import com.timetorunclient.game.TimeToRun;
-import com.timetorunclient.game.connection.Connection;
+import com.timetorunclient.game.utils.Connection;
 import com.timetorunclient.game.space.Graph;
 import com.timetorunclient.game.ui.Button;
 import com.timetorunclient.game.ui.Slider;
 import com.timetorunclient.game.ui.Wheel;
+
+import java.net.InetSocketAddress;
 
 
 public class GameScreen extends ScreenAdapter {
@@ -32,7 +34,6 @@ public class GameScreen extends ScreenAdapter {
 
     GraphView graphView;
     Graph graph;
-    Connection connection;
 
     //For Testing
 
@@ -46,8 +47,14 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void show() {
+        //For testing
+        this.game.server.setMinPlayers(1);
+        this.game.server.createGraph(Gdx.files.internal("map.txt").read());
+        this.game.server.startWaiting();
+
         //create connection
-        this.connection = new Connection();
+        this.game.connection.setServerAddress(this.game.server.getSocketAddress());
+        this.game.connection.connect();
 
         //change inputProcessor
         prevInputProcessor = Gdx.input.getInputProcessor();
@@ -109,17 +116,17 @@ public class GameScreen extends ScreenAdapter {
         this.graphView = new GraphView(4, 0, 0, 0.8f, 0.4f, this.graph,
                 "vertex", gameAtlas,
                 wheel, slider);
-        //create Connection
-        this.connection = new Connection();
 
         //connect classes
         this.graph.setGraphView(graphView);
-        this.connection.setGraph(graph);
-        this.graph.setConnection(connection);
+        this.game.connection.setGraph(graph);
+        this.graph.setConnection(this.game.connection);
         this.graph.setGoButton(buttonA);
         this.graph.setEraseButton(buttonB);
         this.graph.setGoCooldown(1);
-        connection.update();
+
+
+        this.game.connection.update();
 
         mytime = 0;
     }
@@ -171,7 +178,7 @@ public class GameScreen extends ScreenAdapter {
         game.batch.end();
 
         //Do network magic and update entities
-        connection.update();
+        this.game.connection.update();
         graph.update(delta);
     }
 
@@ -185,5 +192,6 @@ public class GameScreen extends ScreenAdapter {
         controlsTextures.dispose();
         game.assets.unload("controls.atlas");
         this.game.assets.unload("game.atlas");
+        this.game.connection.stop();
     }
 }
